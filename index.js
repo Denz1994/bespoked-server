@@ -23,6 +23,23 @@ try {
     console.error(err.message);
 }
 });
+app.get('/v1/lake/customers', async (req, res) => {
+    try {
+        const userData = await dpConnnector.query("SELECT * FROM Customers");
+        res.json(userData[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.get('/v1/lake/salesperson', async (req, res) => {
+    try {
+        const userData = await dpConnnector.query("SELECT * FROM Salespersons");
+        res.json(userData[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 const port = 5001;
 app.listen(port, () => {
